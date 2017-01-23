@@ -9,41 +9,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var lifecycleevent_1 = require('./lifecycleevent');
 var AppComponent = (function () {
     function AppComponent() {
         this.lifecycleEvents = [];
+        this.value1 = '';
     }
-    AppComponent.prototype.reset = function () {
+    AppComponent.prototype.clearList = function () {
         this.lifecycleEvents = [];
     };
     AppComponent.prototype.ngOnInit = function () {
-        this.lifecycleEvents.push("ngOnInit");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngOnInit"));
     };
     AppComponent.prototype.ngOnChange = function (changeRecord) {
-        this.lifecycleEvents.push("onOnChange");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "onOnChange"));
     };
     AppComponent.prototype.ngDoCheck = function () {
-        this.lifecycleEvents.push("ngDoCheck");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngDoCheck"));
     };
     AppComponent.prototype.ngAfterContentInit = function () {
-        this.lifecycleEvents.push("ngAfterContentInit");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngAfterContentInit"));
     };
     AppComponent.prototype.ngAfterContentChecked = function () {
-        this.lifecycleEvents.push("ngAfterContentChecked");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngAfterContentChecked"));
     };
     AppComponent.prototype.ngAfterViewInit = function () {
-        this.lifecycleEvents.push("ngAfterViewInit");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngAfterViewInit"));
     };
     AppComponent.prototype.ngAfterViewChecked = function () {
-        this.lifecycleEvents.push("ngAfterViewChecked");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngAfterViewChecked"));
     };
     AppComponent.prototype.ngOnDestroy = function () {
-        this.lifecycleEvents.push("ngOnDestroy");
+        this.lifecycleEvents.push(new lifecycleevent_1.LifecycleEvent("MyApp", "ngOnDestroy"));
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">Component Lifecycle Event Tracker</div>\n            <div class=\"panel-body\">\n                <div>\n                    <h5>\n                        List of Lifecycle Events of Component:\n                        <button class=\"btn btn-sm btn-primary pull-right\" (click)=\"reset()\">\n                            Reset\n                        </button>\n                    </h5>\n                    <br />\n                    <table class=\"table table-condensed table-hover table-bordered\">\n                        <thead>\n                            <th>#</th>\n                            <th>Lifecycle Event</th>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let lifecycleEvent of lifecycleEvents, let i=index\">\n                                <td>{{i+1}}</td>\n                                <td>{{lifecycleEvent}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    "
+            template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">Component Lifecycle Event Tracker</div>\n            <div class=\"panel-body\">\n            <div> \n            <p>Input: <input [(ngModel)]=\"value1\"></p> \n            <p><strong>Value1 in MyApp Component: {{value1}}</strong></p> \n         </div> \n         <hr /> \n         <div> \n           <test-component [lifecycleEvents]=\"lifecycleEvents\" [value1]=\"value1\"></test-component> \n         <div> \n\n                <hr />\n                <div>\n                    <button class=\"btn btn-sm btn-primary pull-right\" (click)=\"clearList()\">\n                        Clear List\n                    </button>\n                    <lifecycle-logger [lifecycleEvents]=\"lifecycleEvents\"></lifecycle-logger>\n                </div>\n            </div>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

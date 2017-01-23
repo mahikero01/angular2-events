@@ -10,16 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
-var key_up_component_1 = require('./key-up.component');
-var key_up_enter_component_1 = require('./key-up-enter.component');
+//import { KeyUpComponent } from './key-up.component'
+//import { KeyUpEnterComponent } from './key-up-enter.component'
+var lifecyclelogger_1 = require('./lifecyclelogger');
+//import { LifecycleEvent } from './lifecycleevent'
+var testcomponent_1 = require('./testcomponent');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, key_up_component_1.KeyUpComponent, key_up_enter_component_1.KeyUpEnterComponent],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
+            declarations: [
+                app_component_1.AppComponent,
+                lifecyclelogger_1.LifecycleLogger,
+                testcomponent_1.TestComponent
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

@@ -25,7 +25,7 @@ import { Component } from  '@angular/core';
 })
 
 export class KeyUpEnterComponent {
-    values='';
+   /* values='';
  
     onKey(value) {
         this.values += value + ' | ';
@@ -33,5 +33,5 @@ export class KeyUpEnterComponent {
 
     reset() {
         this.values = "";
-    }
+    }*/
 }

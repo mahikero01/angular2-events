@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+
+import { LifecycleEvent } from './lifecycleevent';
 
 @Component({
     selector: 'my-app',
@@ -6,26 +8,21 @@ import {Component} from '@angular/core';
         <div class="panel panel-primary">
             <div class="panel-heading">Component Lifecycle Event Tracker</div>
             <div class="panel-body">
+            <div> 
+            <p>Input: <input [(ngModel)]="value1"></p> 
+            <p><strong>Value1 in MyApp Component: {{value1}}</strong></p> 
+         </div> 
+         <hr /> 
+         <div> 
+           <test-component [lifecycleEvents]="lifecycleEvents" [value1]="value1"></test-component> 
+         <div> 
+
+                <hr />
                 <div>
-                    <h5>
-                        List of Lifecycle Events of Component:
-                        <button class="btn btn-sm btn-primary pull-right" (click)="reset()">
-                            Reset
-                        </button>
-                    </h5>
-                    <br />
-                    <table class="table table-condensed table-hover table-bordered">
-                        <thead>
-                            <th>#</th>
-                            <th>Lifecycle Event</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let lifecycleEvent of lifecycleEvents, let i=index">
-                                <td>{{i+1}}</td>
-                                <td>{{lifecycleEvent}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <button class="btn btn-sm btn-primary pull-right" (click)="clearList()">
+                        Clear List
+                    </button>
+                    <lifecycle-logger [lifecycleEvents]="lifecycleEvents"></lifecycle-logger>
                 </div>
             </div>
         </div>
@@ -33,40 +30,43 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent {
-    lifecycleEvents:Array<string>;
-
+    lifecycleEvents:Array<LifecycleEvent>;
+    value1: string;
+    //value2=value1 + 'rico';
+    value2: string;
     constructor() {
         this.lifecycleEvents = [];
+        this.value1 = '';
     }
 
-    reset() {
+    clearList() {
         this.lifecycleEvents = [];
     }
 
     ngOnInit() {
-        this.lifecycleEvents.push("ngOnInit");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp", "ngOnInit"));
     }
 
     ngOnChange(changeRecord) {
-        this.lifecycleEvents.push("onOnChange");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","onOnChange"));
     }
 
     ngDoCheck() {
-        this.lifecycleEvents.push("ngDoCheck");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngDoCheck"));
     }
     ngAfterContentInit() {
-        this.lifecycleEvents.push("ngAfterContentInit");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngAfterContentInit"));
     }
     ngAfterContentChecked() {
-        this.lifecycleEvents.push("ngAfterContentChecked");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngAfterContentChecked"));
     }
     ngAfterViewInit() {
-        this.lifecycleEvents.push("ngAfterViewInit");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngAfterViewInit"));
     }
     ngAfterViewChecked() {
-        this.lifecycleEvents.push("ngAfterViewChecked");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngAfterViewChecked"));
     }
     ngOnDestroy() {
-        this.lifecycleEvents.push("ngOnDestroy");
+        this.lifecycleEvents.push(new LifecycleEvent("MyApp","ngOnDestroy"));
     }
 }
