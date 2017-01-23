@@ -11,11 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var KeyUpComponent = (function () {
     function KeyUpComponent() {
+        this.values = '';
     }
+    KeyUpComponent.prototype.onKey = function (event) {
+        this.values += event.target.value + ' | ';
+    };
+    ;
+    KeyUpComponent.prototype.reset = function () {
+        this.values = "";
+    };
+    ;
     KeyUpComponent = __decorate([
         core_1.Component({
             selector: 'key-up',
-            template: "\n    <h1>rico</h1>\n    "
+            template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                Angular 2 Event Binding Demo - Start typing here:\n            </div>\n            <div class=\"panel-body\">\n                <div>\n                    <input (keyup)=\"onKey($event)\">\n                </div>\n                <hr />\n                <div>\n                    <h5>\n                        Resulting keyup events:\n                        <button class=\"btn btn-sm btn-primary pull-right\" (click)=\"reset()\">\n                            Reset\n                        </button>\n                    </h5>\n                    <div>\n                        {{values}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], KeyUpComponent);
