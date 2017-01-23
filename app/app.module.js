@@ -10,15 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-var key_up_component_1 = require('./key-up.component');
+var key_up_enter_component_1 = require('./key-up-enter.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
-            declarations: [key_up_component_1.KeyUpComponent],
-            bootstrap: [key_up_component_1.KeyUpComponent]
+            declarations: [key_up_enter_component_1.KeyUpEnterComponent],
+            bootstrap: [key_up_enter_component_1.KeyUpEnterComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
