@@ -19,9 +19,33 @@ import {Component} from '@angular/core';
                             Reset
                         </button>
                     </h5>
-                    <div>
-                        {{values}}
-                    </div>
+                    <br />
+                    <table class="table table-condensed table-hover table-bordered">
+                        <thead>
+                            <th>#</th>
+                            <th>Event Type</th>
+                            <th>Event Timestamp</th>
+                            <th>Event Target</th>
+                            <th>Code</th>
+                            <th>Key</th>
+                            <th>Shift</th>
+                            <th>Ctrl</th>
+                            <th>Alt</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let keyUpEvent of keyUpEvents, let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{keyUpEvent.type}}</td>
+                                <td>{{keyUpEvent.timeStamp}}</td>
+                                <td>{{keyUpEvent.target}}</td>
+                                <td>{{keyUpEvent.code}}</td>
+                                <td>{{keyUpEvent.key}}</td>
+                                <td>{{keyUpEvent.shiftKey}}</td>
+                                <td>{{keyUpEvent.ctrlKey}}</td>
+                                <td>{{keyUpEvent.altKey}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -29,13 +53,17 @@ import {Component} from '@angular/core';
 })
 
 export class KeyUpComponent {
-    values='';
+    keyUpEvents: Array<Event>;
+
+    constructor () {
+        this.keyUpEvents = [];
+    }
 
     onKey(event: KeyboardEvent) {
-        this.values += (<HTMLInputElement>event.target).value + ' | ';
+        this.keyUpEvents.push(event);
     };
 
     reset() {
-        this.values = "";
+        this.keyUpEvents = [];
     };
 }
