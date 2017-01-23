@@ -11,11 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.lifecycleEvents = [];
     }
+    AppComponent.prototype.reset = function () {
+        this.lifecycleEvents = [];
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.lifecycleEvents.push("ngOnInit");
+    };
+    AppComponent.prototype.ngOnChange = function (changeRecord) {
+        this.lifecycleEvents.push("onOnChange");
+    };
+    AppComponent.prototype.ngDoCheck = function () {
+        this.lifecycleEvents.push("ngDoCheck");
+    };
+    AppComponent.prototype.ngAfterContentInit = function () {
+        this.lifecycleEvents.push("ngAfterContentInit");
+    };
+    AppComponent.prototype.ngAfterContentChecked = function () {
+        this.lifecycleEvents.push("ngAfterContentChecked");
+    };
+    AppComponent.prototype.ngAfterViewInit = function () {
+        this.lifecycleEvents.push("ngAfterViewInit");
+    };
+    AppComponent.prototype.ngAfterViewChecked = function () {
+        this.lifecycleEvents.push("ngAfterViewChecked");
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this.lifecycleEvents.push("ngOnDestroy");
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<h1>Hello<h1>"
+            template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">Component Lifecycle Event Tracker</div>\n            <div class=\"panel-body\">\n                <div>\n                    <h5>\n                        List of Lifecycle Events of Component:\n                        <button class=\"btn btn-sm btn-primary pull-right\" (click)=\"reset()\">\n                            Reset\n                        </button>\n                    </h5>\n                    <br />\n                    <table class=\"table table-condensed table-hover table-bordered\">\n                        <thead>\n                            <th>#</th>\n                            <th>Lifecycle Event</th>\n                        </thead>\n                        <tbody>\n                            <tr *ngFor=\"let lifecycleEvent of lifecycleEvents, let i=index\">\n                                <td>{{i+1}}</td>\n                                <td>{{lifecycleEvent}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

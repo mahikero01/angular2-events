@@ -20,7 +20,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
             declarations: [app_component_1.AppComponent, key_up_component_1.KeyUpComponent, key_up_enter_component_1.KeyUpEnterComponent],
-            bootstrap: [key_up_enter_component_1.KeyUpEnterComponent]
+            bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

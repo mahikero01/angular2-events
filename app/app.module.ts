@@ -9,7 +9,7 @@ import { KeyUpEnterComponent } from './key-up-enter.component'
 @NgModule({
     imports: [BrowserModule],
     declarations: [AppComponent, KeyUpComponent, KeyUpEnterComponent],
-    bootstrap: [KeyUpEnterComponent]
+    bootstrap: [AppComponent]
 })
 
 export class AppModule{}
